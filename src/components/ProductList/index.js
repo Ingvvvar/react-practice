@@ -1,18 +1,13 @@
 import React from 'react';
 import useData from '../../custom-hooks/useData';
-import { useHistory } from "react-router-dom";
+import { useParams } from 'react-router';
 
 
 const ProductList = () => {
 
-  const id = useHistory();
-  const redirect = () => {
-    id.push("/foodBand");
-  }
+  const { products } = useParams();
 
-  const data = useData('pizzaPlus');
-
-  console.log(data)
+  const data = useData(products);
 
   return (
     <>
@@ -21,7 +16,7 @@ const ProductList = () => {
 
         const src = require(`../../assets/${image}`).default
 
-        return (<li key={id} className="card card-restaurant" onClick={redirect}>
+        return (<li key={id} className="card card-restaurant" >
           <img src={src} alt="image" className="card-image" />
           <div className="card-text">
             <div className="card-heading">
