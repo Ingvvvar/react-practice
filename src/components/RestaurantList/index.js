@@ -3,59 +3,46 @@ import useData from '../../custom-hooks/useData';
 import Spinner from '../Spinner';
 import { useHistory } from 'react-router-dom';
 
-
 const RestaurantList = () => {
 
-  const data = useData('partners');
-  const history = useHistory();
+    const data = useData('partners');
+    const history = useHistory();
 
-  const handleClick = (products) => {
-    history.push(`/restaurant/${products}`);
-  }
+    const handleClick = (products) => {
+        history.push(`/restaurant/${products}`);
+    }
 
-  if (!data) {
-    return <Spinner />
-  }
+    if(!data) {
+        return <Spinner />
+    }
 
-  return (
-    <section className="restaurants">
+    return (
+            <ul className="cards cards-restaurants">
+                {data?.map(restaurant => {
+                    const { kitchen, image, name, price, products, stars, time_of_delivery} = restaurant;
 
-      <div className="section-heading">
-        <h2 className="section-title">Рестораны</h2>
-        <label className="search">
-          <input type="text" className="input input-search" placeholder="Поиск блюд и ресторанов" />
-        </label>
-      </div>
+                    const src = require(`../../assets/${image}`).default;
 
-      <ul className="cards cards-restaurants">
-        {data?.map(restaurant => {
-          const { kitchen, image, name, price, products, stars, time_of_delivery } = restaurant;
+                    return (<li key={products} className="card card-restaurant" onClick={() => handleClick(products)}>
+                                <img src={src} alt={src} className="card-image"/>
+                                <div className="card-text">
+                                    <div className="card-heading">
+                                    <h3 className="card-title">{name}</h3>
+                                    <span className="card-tag tag">{time_of_delivery} мин</span>
+                                    </div>
+                                    <div className="card-info">
+                                    <div className="rating">
+                                        {stars}
+                                    </div>
+                                    <div className="price">От {price} UAH</div>
+                                    <div className="category">{kitchen}</div>
+                                    </div>
+                                </div>
+                    </li>)
+                })}
+            </ul>
 
-          const src = require(`../../assets/${image}`).default;
-
-
-          return (<li key={products} className="card card-restaurant" onClick={() => handleClick(products)}>
-            <img src={src} alt={src} className="card-image" />
-            <div className="card-text">
-              <div className="card-heading">
-                <h3 className="card-title">{name}</h3>
-                <span className="card-tag tag">{time_of_delivery} мин</span>
-              </div>
-              <div className="card-info">
-                <div className="rating">
-                  {stars}
-                </div>
-                <div className="price">От {price} UAH</div>
-                <div className="category">{kitchen}</div>
-              </div>
-            </div>
-          </li>)
-        })}
-      </ul>
-
-    </section>
-  )
+    )
 }
-
 
 export default RestaurantList;
