@@ -2,11 +2,16 @@ import React from 'react';
 import useData from '../../custom-hooks/useData';
 import Spinner from '../Spinner';
 import { useHistory } from 'react-router-dom';
+// import ProductList from '../ProductList/index';
 
 const RestaurantList = () => {
 
     const data = useData('partners');
     const history = useHistory();
+
+    // // const { products } = useParams();
+    // let productList = useData('gusiLebedi');
+    // const minPrice = Math.min.apply(null, productList?.data.map(el => el.price));
 
     const handleClick = (products) => {
         history.push(`/restaurant/${products}`);

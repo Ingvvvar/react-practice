@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '../HomePage';
 import ProductPage from '../ProductPage';
 import ErrorProductPage from '../ErrorProductPage';
+import ToRestaurants from '../ToRestaurants';
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
               <Route path="/" exact component={HomePage}/>
               <Route path="/restaurant/:products" exact component={ProductPage}/>
               <Route path="/error-product-list" component={ErrorProductPage} />
+              <Route path="/restaurants-info" component={ToRestaurants} />
               <Route render={() => <h2>Error page</h2>}/>
             </Switch>
             <Footer />
           </Router>
+          
         </div>
       </main>
     </div>

@@ -11,7 +11,7 @@ const Footer = () => {
                     </Link>
                         
                     <nav className="footer-nav">
-                        <Link to="/" className="footer-link">Ресторанам</Link>
+                        <Link to="/restaurants-info" className="footer-link">Ресторанам</Link>
                         <Link to="/" className="footer-link">Курьерам</Link>
                         <Link to="/" className="footer-link">Пресс-центр</Link>
                         <Link to="/" className="footer-link">Контакты</Link>
